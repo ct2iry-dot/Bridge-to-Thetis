@@ -801,7 +801,7 @@ class App(tk.Tk):
             call, mode_tci, freq_hz, bg_hex,
             spotter=spotter, comment=spot_comment,
             extended=self.tci_extended.get(),
-            text_color_hex=fg_hex,
+            text_color_hex=None,  # let Thetis auto-pick contrast text colour
             country=country, continent=continent, heading=heading,
         )
         self._painted_spots[call] = {
@@ -908,7 +908,7 @@ class App(tk.Tk):
             call, mode_tci, freq_hz, bg_hex,
             spotter=spotter, comment=spot_comment,
             extended=self.tci_extended.get(),
-            text_color_hex=fg_hex,
+            text_color_hex=None,  # let Thetis auto-pick contrast text colour
             country=country, continent=continent, heading=heading,
         )
         self._painted_spots[call] = {

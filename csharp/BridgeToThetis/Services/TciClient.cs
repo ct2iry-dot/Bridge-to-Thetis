@@ -227,7 +227,7 @@ public class TciClient : IDisposable
                 Heading = spot.Heading,
                 Country = spot.Country,
                 UtcTime = utc,
-                TextColor = spot.FontColor,
+                TextColor = "",  // empty = Thetis auto-picks contrast text colour
                 IsSWL = false,
                 SWLSecondsToLive = 0,
             });
