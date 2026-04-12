@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.claude/
+bridge_config.json
+Maps/
+*.txt
+*.mdb
+*.csv
+*_probe.py
