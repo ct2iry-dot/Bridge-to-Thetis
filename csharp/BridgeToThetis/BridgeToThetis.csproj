@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>BridgeToThetis</AssemblyName>
     <RootNamespace>BridgeToThetis</RootNamespace>
-    <Version>7.0.0</Version>
+    <Version>7.0.1</Version>
     <ApplicationIcon>bridge.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
