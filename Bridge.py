@@ -1039,26 +1039,21 @@ class App(tk.Tk):
             "pip install websocket-client")
 
     def _show_about(self):
-        cty_info = ("CTY: {} entities".format(self._cty.entity_count)
-                    if self._cty else "CTY: not loaded")
-        qth_info = ("QTH: {} ({:.4f}, {:.4f})".format(
-                    self._qth_grid, self._qth_lat, self._qth_lon)
-                    if self._qth_grid else "QTH: not found in registry")
-        if self._band_modes and self._band_modes.loaded:
-            bm_info = "BandModes: {} ranges from {}".format(
-                self._band_modes.entry_count,
-                os.path.basename(self._band_modes.path))
-        else:
-            bm_info = "BandModes: not found — using frequency heuristics"
-        messagebox.showinfo("About",
-            "Bridge to Thetis  v7.0  CT2IRY\n\n"
-            "Commander WaterfallBandmap :13063  ->  Thetis TCI :50001\n\n"
-            "{}\n{}\n{}\n\n"
-            "fontcolor: from Commander (SpotCollector need-category)\n"
-            "DXView LoTW/eQSL bg: auto-discovered from registry\n"
-            "BigCTY: auto-discovered from DXView registry\n"
-            "SC bg colors: auto-read from SpotCollector registry".format(
-                qth_info, cty_info, bm_info))
+        messagebox.showinfo("About Bridge to Thetis",
+            "Bridge to Thetis\n"
+            "Version 7.0\n\n"
+            "Developed by Nuno Lopes — CT2IRY\n\n"
+            "─────────────────────────────────\n\n"
+            "Special thanks:\n\n"
+            "Dave Bernstein AA6YQ\n"
+            "  DXLab Suite — WaterfallBandmap protocol,\n"
+            "  integration support and listing on\n"
+            "  the DXLab download page.\n\n"
+            "Richie MW0LGE\n"
+            "  Thetis SDR — TCI protocol guidance\n"
+            "  and spot painting implementation.\n\n"
+            "─────────────────────────────────\n\n"
+            "https://github.com/ct2iry-dot/Bridge-to-Thetis")
 
     # ── Config persistence ────────────────────────────────────────────────────
 
