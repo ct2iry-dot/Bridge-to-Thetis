@@ -23,8 +23,6 @@ public partial class DebugWindow : Window
     {
         InitializeComponent();
         _vm = vm;
-        // Prevent FlowDocument from collapsing to column-width and rendering text vertically
-        LogBox.Document.PageWidth = 10000;
     }
 
     public void AppendLog(string msg)
@@ -59,8 +57,6 @@ public partial class DebugWindow : Window
         {
             Foreground = brush,
             Margin = new Thickness(0),
-            FontFamily = new FontFamily("Consolas"),
-            FontSize = 10,
         };
 
         LogBox.Document.Blocks.Add(paragraph);

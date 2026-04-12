@@ -35,12 +35,15 @@
         <RichTextBox x:Name="LogBox"
                      Grid.Row="1"
                      Background="#1E1E1E"
-                     FontFamily="Consolas"
-                     FontSize="10"
                      IsReadOnly="True"
                      BorderThickness="0"
                      Foreground="#CCCCCC"
                      VerticalScrollBarVisibility="Auto"
-                     HorizontalScrollBarVisibility="Auto"/>
+                     HorizontalScrollBarVisibility="Disabled">
+            <FlowDocument PageWidth="9999"
+                          FontFamily="Consolas"
+                          FontSize="10"
+                          LineHeight="14"/>
+        </RichTextBox>
     </Grid>
 </Window>
