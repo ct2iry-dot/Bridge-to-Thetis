@@ -470,9 +470,9 @@ class ConfigWindow(tk.Toplevel):
         ttk.Button(wbm, text="Apply & Restart", command=_apply_cdr).grid(
             row=3, column=0, columnspan=5, sticky="w", padx=8, pady=6)
 
-        # Flex SmartSDR server (Stage 1)
+        # Flex SmartSDR server — hidden until fully working
+        # To re-enable: change flx.pack_forget() to flx.pack(fill="x", padx=14, pady=4)
         flx = ttk.LabelFrame(p, text="Flex SmartSDR  (Stage 1 — fake Flex radio  TCP :4992)")
-        flx.pack(fill="x", padx=14, pady=4)
         ttk.Label(flx,
             text="Configure Commander as a Flex Signature radio pointing to Bridge.\n"
                  "Bridge intercepts spot add/remove directives and paints them on Thetis.\n"
@@ -636,7 +636,8 @@ class App(tk.Tk):
         self.lbl_tci.pack(fill="x", padx=2, pady=1)
         self.lbl_cdr.pack(fill="x", padx=2, pady=1)
         self.lbl_dxview.pack(fill="x", padx=2, pady=1)
-        self.lbl_flex.pack(fill="x", padx=2, pady=1)
+        # lbl_flex hidden until Flex SmartSDR server is fully working
+        # self.lbl_flex.pack(fill="x", padx=2, pady=1)
 
     def _heartbeat(self):
         elapsed = max(1, (time.time() - self._start_time) / 60)
