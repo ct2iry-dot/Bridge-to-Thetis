@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
   <Package
     Name="Bridge to Thetis"
     Manufacturer="Nuno Lopes CT2IRY"
@@ -10,6 +12,9 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of Bridge to Thetis is already installed." />
 
     <Media Id="1" Cabinet="BridgeToThetis.cab" EmbedCab="yes" />
+
+    <!-- Let user choose install folder; default = 64-bit Program Files -->
+    <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
 
     <Feature Id="ProductFeature" Title="Bridge to Thetis" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
