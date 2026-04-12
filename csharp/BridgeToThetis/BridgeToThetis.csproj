@@ -8,6 +8,7 @@
     <AssemblyName>BridgeToThetis</AssemblyName>
     <RootNamespace>BridgeToThetis</RootNamespace>
     <Version>7.0.0</Version>
+    <ApplicationIcon>bridge.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
