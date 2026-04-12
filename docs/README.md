@@ -104,7 +104,8 @@ For full step-by-step instructions see [CONFIGURATION.md](CONFIGURATION.md).
 ## Acknowledgements
 
 - **Dave Bernstein AA6YQ** — DXLab Suite author, for the Waterfall Bandmap UDP protocol documentation and for listing Bridge to Thetis in the DXLab download page
-- **Warren Merkel KD5TFD / MW0LGE** — Thetis development, TCI protocol
+- **Richie Samphire MW0LGE** — Thetis development
+- **ExpertSDR** — TCI protocol                  
 - The DXLab Suite community
 
 ---
