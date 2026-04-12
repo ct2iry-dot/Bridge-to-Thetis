@@ -23,6 +23,8 @@ public partial class DebugWindow : Window
     {
         InitializeComponent();
         _vm = vm;
+        // Prevent FlowDocument from collapsing to column-width and rendering text vertically
+        LogBox.Document.PageWidth = 10000;
     }
 
     public void AppendLog(string msg)
@@ -65,7 +67,7 @@ public partial class DebugWindow : Window
         _lineCount++;
 
         if (ChkAutoScroll.IsChecked == true)
-            Scroller.ScrollToBottom();
+            LogBox.ScrollToEnd();
     }
 
     private static SolidColorBrush ClassifyBrush(string msg)

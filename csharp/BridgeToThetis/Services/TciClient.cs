@@ -214,7 +214,7 @@ public class TciClient : IDisposable
         if (!IsReady) return;
 
         string tciMode = BandHelpers.MapMode(spot.Mode, spot.FreqHz);
-        uint argb = ColorHelpers.HexToArgb(spot.FontColor);
+        uint argb = ColorHelpers.HexToArgb(spot.BackColor);
 
         string cmd;
         if (extended)
@@ -227,7 +227,7 @@ public class TciClient : IDisposable
                 Heading = spot.Heading,
                 Country = spot.Country,
                 UtcTime = utc,
-                TextColor = "",  // empty = Thetis auto-picks contrast text colour
+                TextColor = spot.FontColor,
                 IsSWL = false,
                 SWLSecondsToLive = 0,
             });

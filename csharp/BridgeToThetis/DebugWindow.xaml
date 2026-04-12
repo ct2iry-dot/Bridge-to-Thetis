@@ -32,19 +32,15 @@
         </StackPanel>
 
         <!-- Log output -->
-        <ScrollViewer Grid.Row="1" x:Name="Scroller"
-                      VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Auto"
-                      Background="#1E1E1E">
-            <RichTextBox x:Name="LogBox"
-                         Background="#1E1E1E"
-                         FontFamily="Consolas"
-                         FontSize="10"
-                         IsReadOnly="True"
-                         BorderThickness="0"
-                         Foreground="#CCCCCC"
-                         VerticalScrollBarVisibility="Disabled"
-                         HorizontalScrollBarVisibility="Disabled"/>
-        </ScrollViewer>
+        <RichTextBox x:Name="LogBox"
+                     Grid.Row="1"
+                     Background="#1E1E1E"
+                     FontFamily="Consolas"
+                     FontSize="10"
+                     IsReadOnly="True"
+                     BorderThickness="0"
+                     Foreground="#CCCCCC"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"/>
     </Grid>
 </Window>
