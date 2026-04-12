@@ -1049,7 +1049,7 @@ class App(tk.Tk):
             "  DXLab Suite — WaterfallBandmap protocol,\n"
             "  integration support and listing on\n"
             "  the DXLab download page.\n\n"
-            "Richie MW0LGE\n"
+            "Richie Samphire MW0LGE\n"
             "  Thetis SDR — TCI protocol guidance\n"
             "  and spot painting implementation.\n\n"
             "─────────────────────────────────\n\n"
