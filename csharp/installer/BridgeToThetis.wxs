@@ -37,7 +37,7 @@
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <Component Id="MainExecutable" Guid="B2C3D4E5-F6A7-8901-BCDE-F12345678901">
         <File Id="BridgeToThetisExe"
-              Source="..\publish\BridgeToThetis.exe"
+              Source="..\BridgeToThetis\publish\BridgeToThetis.exe"
               KeyPath="yes" />
       </Component>
     </ComponentGroup>
