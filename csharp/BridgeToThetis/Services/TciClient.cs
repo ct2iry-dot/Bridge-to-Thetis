@@ -220,6 +220,10 @@ public class TciClient : IDisposable
         if (extended)
         {
             string utc = spot.UtcTime.ToString("yyyy-MM-ddTHH:mm:ssZ");
+            var _opts = new System.Text.Json.JsonSerializerOptions
+            {
+                PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+            };
             string jsonPayload = System.Text.Json.JsonSerializer.Serialize(new
             {
                 Spotter = spot.Spotter,
@@ -230,7 +234,7 @@ public class TciClient : IDisposable
                 TextColor = spot.FontColor,
                 IsSWL = false,
                 SWLSecondsToLive = 0,
-            });
+            }, _opts);
             cmd = $"spot:{spot.CallSign},{tciMode},{spot.FreqHz},{argb},[json]{jsonPayload};";
         }
         else
