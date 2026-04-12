@@ -461,14 +461,12 @@ class ConfigWindow(tk.Toplevel):
                  "Bridge paints them on the Thetis panadapter with LoTW/eQSL background colors.",
             font=("Segoe UI", 8), foreground="#004400", justify="left").grid(
             row=0, column=0, columnspan=5, padx=10, pady=(6, 4), sticky="w")
-        ttk.Checkbutton(wbm, text="Enable spot feed",
-            variable=app.cdr_spots_enable).grid(row=1, column=0, columnspan=5, sticky="w", padx=8, pady=(2, 2))
-        self._iprow(wbm, 2, "Listen Address", app.cdr_spots_ip, app.cdr_spots_port,
+        self._iprow(wbm, 1, "Listen Address", app.cdr_spots_ip, app.cdr_spots_port,
             "Default 127.0.0.1 : 13063")
         def _apply_cdr():
             app.save_config(); app._start_cdr_spots()
         ttk.Button(wbm, text="Apply & Restart", command=_apply_cdr).grid(
-            row=3, column=0, columnspan=5, sticky="w", padx=8, pady=6)
+            row=2, column=0, columnspan=5, sticky="w", padx=8, pady=6)
 
         # Flex SmartSDR server — hidden until fully working
         # To re-enable: change flx.pack_forget() to flx.pack(fill="x", padx=14, pady=4)
@@ -554,7 +552,6 @@ class App(tk.Tk):
         self.tci_extended   = tk.BooleanVar(value=True)
         self.cdr_spots_ip   = tk.StringVar(value="127.0.0.1")
         self.cdr_spots_port = tk.StringVar(value="13063")
-        self.cdr_spots_enable = tk.BooleanVar(value=True)
         self.band_filter    = tk.BooleanVar(value=False)  # paint only current VFO band
         self.flex_enable    = tk.BooleanVar(value=False)  # Stage 1 Flex SmartSDR server
         self.flex_port      = tk.StringVar(value="4992")
@@ -675,9 +672,7 @@ class App(tk.Tk):
         # CDR spots listener
         cdr = self._cdr_spots
         if cdr is None:
-            self.lbl_cdr.config(
-                text="CDR: {}".format("disabled" if not self.cdr_spots_enable.get() else "off"),
-                fg="#888888")
+            self.lbl_cdr.config(text="CDR: off", fg="#888888")
         else:
             st = cdr.status; lo = st.lower()
             dot = "●"
@@ -725,8 +720,6 @@ class App(tk.Tk):
     def _start_cdr_spots(self):
         if CommanderSpotsListener is None:
             self.log_debug("commander_spots module not available", tag="warn"); return
-        if not self.cdr_spots_enable.get():
-            self.log_debug("Commander spots listener disabled", tag="dxlab"); return
         self._stop_cdr_spots()
         try:    port = int(self.cdr_spots_port.get())
         except: port = 13063
@@ -1081,7 +1074,6 @@ class App(tk.Tk):
             "tci_extended":      g(self.tci_extended),
             "cdr_spots_ip":      g(self.cdr_spots_ip),
             "cdr_spots_port":    g(self.cdr_spots_port),
-            "cdr_spots_enable":  g(self.cdr_spots_enable),
             "band_filter":       g(self.band_filter),
             "flex_enable":       g(self.flex_enable),
             "flex_port":         g(self.flex_port),
@@ -1102,7 +1094,6 @@ class App(tk.Tk):
             (self.tci_extended,     "tci_extended"),
             (self.cdr_spots_ip,     "cdr_spots_ip"),
             (self.cdr_spots_port,   "cdr_spots_port"),
-            (self.cdr_spots_enable, "cdr_spots_enable"),
             (self.band_filter,      "band_filter"),
             (self.flex_enable,      "flex_enable"),
             (self.flex_port,        "flex_port"),
