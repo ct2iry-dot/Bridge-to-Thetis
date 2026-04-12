@@ -112,17 +112,13 @@ When enabled, only spots on the same amateur band as the current Thetis VFO are 
 
 This is useful during a contest or when you only want to see spots relevant to your current operating position.
 
-### 4.3 CW mode
-
-Controls whether CW spots are sent as **CWU** (upper sideband, default for most transceivers) or **CWL** (lower sideband). Match this to how your Thetis/radio handles CW.
-
-### 4.4 Extended spot data
+### 4.3 Extended spot data
 
 When enabled (default), Bridge to Thetis sends a full JSON payload with each spot containing: spotter, comment, country, heading, and UTC time. This data appears in the Thetis spot tooltip.
 
 When disabled, only the minimal spot command is sent (callsign, mode, frequency, colour). Disable this only if you experience compatibility issues with older Thetis builds.
 
-### 4.5 QTH coordinates
+### 4.4 QTH coordinates
 
 Enter your station latitude and longitude to enable beam heading and distance calculation. Headings appear in the spot tooltip as "Heading: NNN" and distance as "NNNNkm" in the comment field.
 
