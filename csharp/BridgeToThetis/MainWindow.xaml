@@ -1,0 +1,96 @@
+<Window x:Class="BridgeToThetis.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bridge to Thetis  v7.0  CT2IRY  —  DXLab Edition"
+        Width="780" Height="200"
+        ResizeMode="CanMinimize"
+        Background="#F0F0F0"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+        <!-- Menu Bar -->
+        <Menu DockPanel.Dock="Top" Background="#E8E8E8">
+            <MenuItem Header="_Configuration" Click="MenuConfiguration_Click"/>
+            <MenuItem Header="_Debug" Click="MenuDebug_Click"/>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About" Click="MenuAbout_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Main content area -->
+        <Grid Margin="8,6,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Status Bar (large text) -->
+            <Border Grid.Row="0" Background="#1E3A5F" CornerRadius="4" Padding="10,6" Margin="0,0,0,6">
+                <TextBlock Text="{Binding StatusBar}"
+                           Foreground="White"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           FontFamily="Segoe UI"
+                           HorizontalAlignment="Center"/>
+            </Border>
+
+            <!-- Indicator row -->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- TCI Status -->
+                <Border Grid.Column="0" Background="White" BorderBrush="#CCCCCC" BorderThickness="1"
+                        CornerRadius="3" Margin="2" Padding="8,5">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Ellipse Width="12" Height="12" Margin="0,0,6,0"
+                                 Fill="{Binding TciStatusColor}"/>
+                        <StackPanel>
+                            <TextBlock Text="Thetis TCI" FontSize="10" Foreground="#666666"/>
+                            <TextBlock Text="{Binding TciStatus}" FontWeight="SemiBold" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- CDR Status -->
+                <Border Grid.Column="1" Background="White" BorderBrush="#CCCCCC" BorderThickness="1"
+                        CornerRadius="3" Margin="2" Padding="8,5">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Ellipse Width="12" Height="12" Margin="0,0,6,0"
+                                 Fill="{Binding CdrStatusColor}"/>
+                        <StackPanel>
+                            <TextBlock Text="Commander Spots" FontSize="10" Foreground="#666666"/>
+                            <TextBlock Text="{Binding CdrStatus}" FontWeight="SemiBold" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!-- DXV Status -->
+                <Border Grid.Column="2" Background="White" BorderBrush="#CCCCCC" BorderThickness="1"
+                        CornerRadius="3" Margin="2" Padding="8,5">
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Ellipse Width="12" Height="12" Margin="0,0,6,0"
+                                 Fill="{Binding DxvStatusColor}"/>
+                        <StackPanel>
+                            <TextBlock Text="DXView LoTW/eQSL" FontSize="10" Foreground="#666666"/>
+                            <TextBlock Text="{Binding DxvStatus}" FontWeight="SemiBold" FontSize="12"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- Bottom row: version info -->
+            <TextBlock Grid.Row="2"
+                       Text="Bridge to Thetis v7.0 — CT2IRY — DXLab Edition"
+                       Foreground="#888888"
+                       FontSize="10"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Margin="0,4,0,0"/>
+        </Grid>
+    </DockPanel>
+</Window>

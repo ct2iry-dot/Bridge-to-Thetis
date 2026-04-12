@@ -1,0 +1,166 @@
+<Window x:Class="BridgeToThetis.ConfigWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Configuration — Bridge to Thetis"
+        Width="460" Height="380"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0">
+
+            <!-- Network Tab -->
+            <TabItem Header="Network">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="16"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Thetis TCI Section -->
+                    <GroupBox Grid.Row="0" Header="Thetis TCI" Padding="8,4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Host:" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="TxtTciHost" Margin="2"/>
+                            <Label Grid.Row="0" Grid.Column="2" Content="Port:" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="3" x:Name="TxtTciPort" Margin="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                    Content="Reconnect TCI"
+                                    HorizontalAlignment="Left"
+                                    Click="BtnReconnectTci_Click"
+                                    Margin="2,6,2,2"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <!-- Commander WaterfallBandmap Section -->
+                    <GroupBox Grid.Row="1" Header="Commander WaterfallBandmap (UDP)" Padding="8,4" Margin="0,8,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="IP:" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="TxtCdrIp" Margin="2"/>
+                            <Label Grid.Row="0" Grid.Column="2" Content="Port:" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="3" x:Name="TxtCdrPort" Margin="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"
+                                    Content="Apply &amp; Restart"
+                                    HorizontalAlignment="Left"
+                                    Click="BtnApplyCdr_Click"
+                                    Margin="2,6,2,2"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+
+            <!-- Spot Colors Tab -->
+            <TabItem Header="Spot Colors">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Background colors from SpotCollector registry (read-only):"
+                               Margin="0,0,0,10" Foreground="#555555" FontStyle="Italic"/>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,4">
+                        <Border Width="60" Height="22" BorderBrush="#888" BorderThickness="1"
+                                Background="{Binding BgNormalColor}" Margin="0,0,6,0"/>
+                        <TextBlock Text="Normal" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding BgNormalColor}" VerticalAlignment="Center"
+                                   Foreground="#666" Margin="8,0,0,0" FontFamily="Consolas"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,4">
+                        <Border Width="60" Height="22" BorderBrush="#888" BorderThickness="1"
+                                Background="{Binding BgLoTWColor}" Margin="0,0,6,0"/>
+                        <TextBlock Text="LoTW" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding BgLoTWColor}" VerticalAlignment="Center"
+                                   Foreground="#666" Margin="8,0,0,0" FontFamily="Consolas"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,4">
+                        <Border Width="60" Height="22" BorderBrush="#888" BorderThickness="1"
+                                Background="{Binding BgLoTWEQslColor}" Margin="0,0,6,0"/>
+                        <TextBlock Text="LoTW + eQSL" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding BgLoTWEQslColor}" VerticalAlignment="Center"
+                                   Foreground="#666" Margin="8,0,0,0" FontFamily="Consolas"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,4">
+                        <Border Width="60" Height="22" BorderBrush="#888" BorderThickness="1"
+                                Background="{Binding BgEQslColor}" Margin="0,0,6,0"/>
+                        <TextBlock Text="eQSL" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding BgEQslColor}" VerticalAlignment="Center"
+                                   Foreground="#666" Margin="8,0,0,0" FontFamily="Consolas"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+            <!-- Misc Tab -->
+            <TabItem Header="Misc">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <CheckBox Grid.Row="0" x:Name="ChkExtended"
+                              Content="Extended [json] format (include Spotter, Comment, Heading, Country)"
+                              Margin="0,4" IsChecked="{Binding Config.TciExtended}"/>
+
+                    <CheckBox Grid.Row="1" x:Name="ChkBandFilter"
+                              Content="Band filter (only show spots on active VFO band)"
+                              Margin="0,4" IsChecked="{Binding Config.BandFilter}"/>
+
+                    <Separator Grid.Row="2" Margin="0,8"/>
+
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Text="BandModes.txt:" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                        <TextBlock x:Name="TxtBandModesStatus" Text="Not loaded"
+                                   Foreground="#555" FontFamily="Consolas" FontSize="11"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+        <!-- Save button -->
+        <Button Grid.Row="1" Content="Save Configuration"
+                HorizontalAlignment="Right"
+                Margin="0,8,0,0"
+                Padding="12,5"
+                Click="BtnSave_Click"/>
+    </Grid>
+</Window>
