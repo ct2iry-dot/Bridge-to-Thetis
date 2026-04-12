@@ -70,7 +70,7 @@ public class CommanderSpotsListener : IDisposable
                 try
                 {
                     string xml = Encoding.UTF8.GetString(result.Buffer);
-                    OnLogMessage?.Invoke($"[CDR] RX {result.Buffer.Length}b: {xml[..Math.Min(xml.Length, 120)]}");
+                    OnLogMessage?.Invoke($"[CDR] RX {result.Buffer.Length}b: {xml[..Math.Min(xml.Length, 400)]}");
                     ParsePacket(xml);
                     SetStatus($"OK — {_packetCount} pkts");
                 }

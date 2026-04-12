@@ -278,7 +278,7 @@ public class MainViewModel : INotifyPropertyChanged
             _totalSpotCount++;
 
             _dispatcher.Invoke(UpdateStatusBar);
-            LogMessage($"[SPOT] Add: {spot.CallSign} {spot.FreqHz}Hz {spot.Mode} ({spot.Country}) hdg={spot.Heading}");
+            LogMessage($"[SPOT] Add: {spot.CallSign} {spot.FreqHz}Hz {spot.Mode} ({spot.Country}) hdg={spot.Heading} bg={spot.BackColor} fg={spot.FontColor}");
         }
         catch (Exception ex)
         {
