@@ -13,11 +13,10 @@
 
     <Media Id="1" Cabinet="BridgeToThetis.cab" EmbedCab="yes" />
 
-    <!-- Let user choose install folder; default = 64-bit Program Files -->
     <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
 
     <Feature Id="ProductFeature" Title="Bridge to Thetis" Level="1">
-      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="PublishFiles" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
       <ComponentRef Id="ApplicationShortcutStartMenu" />
     </Feature>
@@ -33,15 +32,15 @@
     </StandardDirectory>
   </Fragment>
 
+  <!-- Bundle entire publish folder (all DLLs + language subdirs) -->
   <Fragment>
-    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="MainExecutable" Guid="B2C3D4E5-F6A7-8901-BCDE-F12345678901">
-        <File Id="BridgeToThetisExe"
-              Source="..\BridgeToThetis\publish\BridgeToThetis.exe"
-              KeyPath="yes" />
-      </Component>
+    <ComponentGroup Id="PublishFiles" Directory="INSTALLFOLDER"
+                    Source="..\BridgeToThetis\publish">
+      <Files Include="**\*" />
     </ComponentGroup>
+  </Fragment>
 
+  <Fragment>
     <Component Id="ApplicationShortcutDesktop" Directory="DesktopFolder"
                Guid="C3D4E5F6-A7B8-9012-CDEF-123456789012">
       <Shortcut Id="DesktopShortcut"
