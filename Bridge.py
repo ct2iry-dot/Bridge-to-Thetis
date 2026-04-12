@@ -236,10 +236,9 @@ def _same_band(freq_a: int, freq_b: int) -> bool:
             return False  # one inside, one outside — different bands
     return False
 
-def resolve_cw_mode(freq_hz: int, cw_setting: str) -> str:
-    """Map CW spots to TCI CW/CWL based on user preference or standard band rule."""
-    if cw_setting == "cw":  return "CW"
-    if cw_setting == "cwl": return "CWL"
+def resolve_cw_mode(freq_hz: int) -> str:
+    """CW sideband by standard band convention: CWL at/below 10 MHz, CWU above.
+    Thetis handles the actual sideband selection when the user clicks a spot."""
     return "CWL" if freq_hz <= 10_000_000 else "CW"
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -524,16 +523,6 @@ class ConfigWindow(tk.Toplevel):
         ttk.Checkbutton(tcif, text="Band filter — paint only spots on current VFO band",
             variable=app.band_filter).pack(padx=8, pady=(0, 6), anchor="w")
 
-        cwf = ttk.LabelFrame(p, text="CW Sideband")
-        cwf.pack(fill="x", padx=14, pady=6)
-        for row, (text, val) in enumerate([
-            ("Auto  (<=10 MHz = CW-L,  >10 MHz = CW)", "auto"),
-            ("Always CW  (upper sideband)",             "cw"),
-            ("Always CW-L  (lower / reverse)",          "cwl"),
-        ]):
-            ttk.Radiobutton(cwf, text=text, variable=app.cw_mode, value=val,
-                command=app.save_config).grid(row=row, column=0, padx=12, pady=3, sticky="w")
-
         bmf = ttk.LabelFrame(p, text="BandModes.txt  (SpotCollector mode-by-frequency)")
         bmf.pack(fill="x", padx=14, pady=6)
         bm = app._band_modes
@@ -566,7 +555,6 @@ class App(tk.Tk):
         self.cdr_spots_ip   = tk.StringVar(value="127.0.0.1")
         self.cdr_spots_port = tk.StringVar(value="13063")
         self.cdr_spots_enable = tk.BooleanVar(value=True)
-        self.cw_mode        = tk.StringVar(value="auto")  # auto / cw / cwl
         self.band_filter    = tk.BooleanVar(value=False)  # paint only current VFO band
         self.flex_enable    = tk.BooleanVar(value=False)  # Stage 1 Flex SmartSDR server
         self.flex_port      = tk.StringVar(value="4992")
@@ -783,7 +771,7 @@ class App(tk.Tk):
 
         mode_tci = DXLAB_MODE_MAP.get(mode_sc, "USB")
         if mode_sc in ("CW", "CW-R", "CWR"):
-            mode_tci = resolve_cw_mode(freq_hz, self.cw_mode.get())
+            mode_tci = resolve_cw_mode(freq_hz)
 
         # Foreground: Commander sends the need-category color (DDE-resolved by SC)
         fg_hex = spot.get("fontcolor") or "#0000FF"
@@ -906,7 +894,7 @@ class App(tk.Tk):
 
         # CW sideband
         if mode_tci == "CW":
-            mode_tci = resolve_cw_mode(freq_hz, self.cw_mode.get())
+            mode_tci = resolve_cw_mode(freq_hz)
 
         # CTY lookup
         country = ""; continent = ""; heading = 0
@@ -1093,7 +1081,6 @@ class App(tk.Tk):
             "cdr_spots_ip":      g(self.cdr_spots_ip),
             "cdr_spots_port":    g(self.cdr_spots_port),
             "cdr_spots_enable":  g(self.cdr_spots_enable),
-            "cw_mode":           g(self.cw_mode),
             "band_filter":       g(self.band_filter),
             "flex_enable":       g(self.flex_enable),
             "flex_port":         g(self.flex_port),
@@ -1115,7 +1102,6 @@ class App(tk.Tk):
             (self.cdr_spots_ip,     "cdr_spots_ip"),
             (self.cdr_spots_port,   "cdr_spots_port"),
             (self.cdr_spots_enable, "cdr_spots_enable"),
-            (self.cw_mode,          "cw_mode"),
             (self.band_filter,      "band_filter"),
             (self.flex_enable,      "flex_enable"),
             (self.flex_port,        "flex_port"),
