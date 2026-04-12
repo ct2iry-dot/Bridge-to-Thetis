@@ -49,7 +49,7 @@ public partial class MainWindow : Window
     private void MenuAbout_Click(object sender, RoutedEventArgs e)
     {
         MessageBox.Show(
-            "Bridge to Thetis\nVersion 7.0\n\nDeveloped by Nuno Lopes — CT2IRY\n\n" +
+            $"Bridge to Thetis\nVersion {System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3)}\n\nDeveloped by Nuno Lopes — CT2IRY\n\n" +
             "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n" +
             "Special thanks:\n\n" +
             "Dave Bernstein AA6YQ\n" +
