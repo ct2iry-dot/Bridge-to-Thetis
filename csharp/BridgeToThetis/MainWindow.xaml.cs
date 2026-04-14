@@ -18,8 +18,8 @@ public partial class MainWindow : Window
         DataContext = _vm;
 
         string ver = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "7";
-        Title = $"Bridge to Thetis  v{ver}  CT2IRY  —  DXLab Edition";
-        FooterText.Text = $"Bridge to Thetis v{ver} — CT2IRY — DXLab Edition";
+        Title = $"DXLab - Thetis Bridge  v{ver}  CT2IRY";
+        FooterText.Text = $"DXLab - Thetis Bridge v{ver} — CT2IRY";
     }
 
     private void MenuConfiguration_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ public partial class MainWindow : Window
     private void MenuAbout_Click(object sender, RoutedEventArgs e)
     {
         MessageBox.Show(
-            $"Bridge to Thetis\nVersion {System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3)}\n\nDeveloped by Nuno Lopes — CT2IRY\n\n" +
+            $"DXLab - Thetis Bridge\nVersion {System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3)}\n\nDeveloped by Nuno Lopes — CT2IRY\n\n" +
             "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n" +
             "Special thanks:\n\n" +
             "Dave Bernstein AA6YQ\n" +
@@ -65,7 +65,7 @@ public partial class MainWindow : Window
             "  and spot painting implementation.\n\n" +
             "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\n" +
             "https://github.com/ct2iry-dot/Bridge-to-Thetis",
-            "About Bridge to Thetis",
+            "About DXLab - Thetis Bridge",
             MessageBoxButton.OK,
             MessageBoxImage.Information);
     }

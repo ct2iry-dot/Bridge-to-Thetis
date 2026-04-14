@@ -1,4 +1,4 @@
-# Bridge to Thetis
+# DXLab - Thetis Bridge
 
 **Author:** Nuno Lopes CT2IRY  
 **Version:** 7.1.0  
@@ -8,7 +8,7 @@
 
 ## What is this?
 
-**Bridge to Thetis** connects [DXLab Suite](https://www.dxlabsuite.com) to the [Thetis](https://github.com/ramdor/Thetis) SDR software, painting DX cluster spots live onto the Thetis panadapter with full colour-coding, country information, and beam headings.
+**DXLab - Thetis Bridge** connects [DXLab Suite](https://www.dxlabsuite.com) to the [Thetis](https://github.com/ramdor/Thetis) SDR software, painting DX cluster spots live onto the Thetis panadapter with full colour-coding, country information, and beam headings.
 
 Developed by **CT2IRY**. Endorsed and listed by [DXLab Suite](https://www.dxlabsuite.com).
 
@@ -23,7 +23,7 @@ DX Cluster
 SpotCollector  ──────────────────────────────────────┐
     │  (resolves need-status, applies colours)        │
     ▼                                                 │
-Commander (Waterfall Bandmap) ──UDP :13063──▶ Bridge to Thetis
+Commander (Waterfall Bandmap) ──UDP :13063──▶ DXLab - Thetis Bridge
                                                       │
 DXView (.mdb) ────────────────────────────────────────┤  (bg colour)
 BigCTY (DXView) ──────────────────────────────────────┤  (country/heading)
@@ -56,7 +56,7 @@ Commander ◀──────────────── TCP :13013 ──�
 
 1. Download the latest `BridgeToThetis-Setup.msi` from the [Releases](../../releases) page.
 2. Run the installer — no additional runtime or dependencies required.
-3. Launch **Bridge to Thetis** from the Start menu or desktop shortcut.
+3. Launch **DXLab - Thetis Bridge** from the Start menu or desktop shortcut.
 4. Follow the [Configuration Guide](docs/CONFIGURATION.md).
 
 ---

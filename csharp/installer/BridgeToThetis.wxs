@@ -3,19 +3,19 @@
      xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
 
   <Package
-    Name="Bridge to Thetis"
+    Name="DXLab - Thetis Bridge"
     Manufacturer="Nuno Lopes CT2IRY"
     Version="7.1.0"
     UpgradeCode="A1B2C3D4-E5F6-7890-ABCD-EF1234567890"
     Language="1033">
 
-    <MajorUpgrade DowngradeErrorMessage="A newer version of Bridge to Thetis is already installed." />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of DXLab - Thetis Bridge is already installed." />
 
     <Media Id="1" Cabinet="BridgeToThetis.cab" EmbedCab="yes" />
 
     <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
 
-    <Feature Id="ProductFeature" Title="Bridge to Thetis" Level="1">
+    <Feature Id="ProductFeature" Title="DXLab - Thetis Bridge" Level="1">
       <ComponentGroupRef Id="PublishFiles" />
       <ComponentRef Id="ApplicationShortcutDesktop" />
       <ComponentRef Id="ApplicationShortcutStartMenu" />
@@ -24,11 +24,11 @@
 
   <Fragment>
     <StandardDirectory Id="ProgramFiles64Folder">
-      <Directory Id="INSTALLFOLDER" Name="Bridge to Thetis" />
+      <Directory Id="INSTALLFOLDER" Name="DXLab - Thetis Bridge" />
     </StandardDirectory>
     <StandardDirectory Id="DesktopFolder" />
     <StandardDirectory Id="ProgramMenuFolder">
-      <Directory Id="ApplicationProgramsFolder" Name="Bridge to Thetis" />
+      <Directory Id="ApplicationProgramsFolder" Name="DXLab - Thetis Bridge" />
     </StandardDirectory>
   </Fragment>
 
@@ -44,7 +44,7 @@
     <Component Id="ApplicationShortcutDesktop" Directory="DesktopFolder"
                Guid="C3D4E5F6-A7B8-9012-CDEF-123456789012">
       <Shortcut Id="DesktopShortcut"
-                Name="Bridge to Thetis"
+                Name="DXLab - Thetis Bridge"
                 Description="DXLab Suite to Thetis SDR spot bridge"
                 Target="[INSTALLFOLDER]BridgeToThetis.exe"
                 WorkingDirectory="INSTALLFOLDER" />
@@ -58,7 +58,7 @@
     <Component Id="ApplicationShortcutStartMenu" Directory="ApplicationProgramsFolder"
                Guid="D4E5F6A7-B8C9-0123-DEFA-234567890123">
       <Shortcut Id="StartMenuShortcut"
-                Name="Bridge to Thetis"
+                Name="DXLab - Thetis Bridge"
                 Description="DXLab Suite to Thetis SDR spot bridge"
                 Target="[INSTALLFOLDER]BridgeToThetis.exe"
                 WorkingDirectory="INSTALLFOLDER" />

@@ -12,7 +12,7 @@ public partial class App : Application
         DispatcherUnhandledException += (_, ex) =>
         {
             MessageBox.Show($"Unhandled error:\n{ex.Exception.Message}",
-                "Bridge to Thetis — Error",
+                "DXLab - Thetis Bridge — Error",
                 MessageBoxButton.OK,
                 MessageBoxImage.Error);
             ex.Handled = true;

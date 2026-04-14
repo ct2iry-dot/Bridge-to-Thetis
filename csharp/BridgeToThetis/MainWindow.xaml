@@ -1,7 +1,7 @@
 <Window x:Class="BridgeToThetis.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Bridge to Thetis  CT2IRY  —  DXLab Edition"
+        Title="DXLab - Thetis Bridge  CT2IRY"
         Icon="bridge.ico"
         Width="780" Height="200"
         ResizeMode="CanMinimize"
@@ -87,7 +87,7 @@
             <!-- Bottom row: version info -->
             <TextBlock Grid.Row="2"
                        x:Name="FooterText"
-                       Text="Bridge to Thetis — CT2IRY — DXLab Edition"
+                       Text="DXLab - Thetis Bridge — CT2IRY"
                        Foreground="#888888"
                        FontSize="10"
                        HorizontalAlignment="Center"

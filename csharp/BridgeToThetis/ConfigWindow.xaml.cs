@@ -43,7 +43,7 @@ public partial class ConfigWindow : Window
     {
         ApplyNetworkConfig();
         _vm.SaveConfigCommand.Execute(null);
-        MessageBox.Show("Configuration saved.", "Bridge to Thetis", MessageBoxButton.OK, MessageBoxImage.Information);
+        MessageBox.Show("Configuration saved.", "DXLab - Thetis Bridge", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void BtnApplyFlex_Click(object sender, RoutedEventArgs e)

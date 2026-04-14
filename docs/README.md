@@ -1,6 +1,6 @@
-# Bridge to Thetis — DXLab Edition
+# DXLab - Thetis Bridge — DXLab Edition
 
-**Bridge to Thetis** connects DXLab Suite's spot pipeline to the [Thetis](https://github.com/ramdor/Thetis) SDR software, painting DX cluster spots live onto the Thetis panadapter with full colour-coding, country information, and beam headings.
+**DXLab - Thetis Bridge** connects DXLab Suite's spot pipeline to the [Thetis](https://github.com/ramdor/Thetis) SDR software, painting DX cluster spots live onto the Thetis panadapter with full colour-coding, country information, and beam headings.
 
 Developed by **CT2IRY**. Endorsed and listed by [DXLab Suite](https://www.dxlabsuite.com).
 
@@ -10,7 +10,7 @@ Developed by **CT2IRY**. Endorsed and listed by [DXLab Suite](https://www.dxlabs
 
 SpotCollector receives DX cluster spots and resolves each callsign against your logbook: the spot colour already tells you whether a station is needed, worked, confirmed, or a new multiplier. Commander's Waterfall Bandmap displays those colour-coded spots on a frequency axis.
 
-**Bridge to Thetis** takes that same spot stream and paints it onto Thetis's panadapter in real time — with the same colours, the same need-status logic, and enriched tooltip data:
+**DXLab - Thetis Bridge** takes that same spot stream and paints it onto Thetis's panadapter in real time — with the same colours, the same need-status logic, and enriched tooltip data:
 
 - **Foreground colour** — worked/needed/confirmed/mult status from SpotCollector, resolved against your DXKeeper log
 - **Background colour** — LoTW and eQSL status from DXView (yellow = LoTW, cyan = eQSL, silver = both)
@@ -32,7 +32,7 @@ DX Cluster
 SpotCollector  ──────────────────────────────────────┐
     │  (resolves need-status, applies colours)        │
     ▼                                                 │
-Commander (Waterfall Bandmap) ──UDP :13063──▶ Bridge to Thetis
+Commander (Waterfall Bandmap) ──UDP :13063──▶ DXLab - Thetis Bridge
                                                       │
 DXView (.mdb) ────────────────────────────────────────┤  (bg colour)
 BigCTY (DXView) ──────────────────────────────────────┤  (country/heading)
@@ -61,7 +61,7 @@ All data sources are auto-discovered from the Windows registry — no paths to c
 | [Thetis](https://github.com/ramdor/Thetis) | Any recent build with TCI server |
 | An SDR connected to Thetis | Any hardware supported by Thetis |
 
-DXLab Suite and Thetis must both be running before Bridge to Thetis is started.
+DXLab Suite and Thetis must both be running before DXLab - Thetis Bridge is started.
 
 ---
 
@@ -69,7 +69,7 @@ DXLab Suite and Thetis must both be running before Bridge to Thetis is started.
 
 1. Download the latest `BridgeToThetis-Setup.msi` from the [Releases](../../releases) page.
 2. Run the installer — no additional runtime or dependencies required.
-3. Launch **Bridge to Thetis** from the Start menu.
+3. Launch **DXLab - Thetis Bridge** from the Start menu.
 4. Follow the [Configuration Guide](CONFIGURATION.md).
 
 ---
@@ -80,7 +80,7 @@ With DXLab Suite and Thetis already running and configured:
 
 1. In **Commander** → Settings → Network Services → Waterfall Bandmap and Thetis Bridge Service — ensure the service is enabled (port 13063).
 2. In **Thetis** → Setup → TCI — enable the TCI server on port 50001.
-3. Start **Bridge to Thetis** — it connects automatically.
+3. Start **DXLab - Thetis Bridge** — it connects automatically.
 4. Open a panadapter in Thetis and watch spots appear.
 
 For full step-by-step instructions see [CONFIGURATION.md](CONFIGURATION.md).
@@ -103,7 +103,7 @@ For full step-by-step instructions see [CONFIGURATION.md](CONFIGURATION.md).
 
 ## Acknowledgements
 
-- **Dave Bernstein AA6YQ** — DXLab Suite author, for the Waterfall Bandmap UDP protocol documentation, ConvertColor colour encoding, and for listing Bridge to Thetis in the DXLab download page
+- **Dave Bernstein AA6YQ** — DXLab Suite author, for the Waterfall Bandmap UDP protocol documentation, ConvertColor colour encoding, and for listing DXLab - Thetis Bridge in the DXLab download page
 - **Richie Samphire MW0LGE** — Thetis development
 - **ExpertSDR** — TCI protocol
 - The DXLab Suite community
