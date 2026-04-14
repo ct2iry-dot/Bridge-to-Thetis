@@ -37,6 +37,7 @@ public class MainViewModel : INotifyPropertyChanged
     // Services
     public readonly TciClient TciClient;
     public readonly CommanderSpotsListener CdrListener;
+    public readonly FlexTcpListener FlexListener;
     public readonly DXViewCache DxvCache;
     public readonly CtyDatabase CtyDb;
     public readonly BandModesMap BandModes;
@@ -71,6 +72,7 @@ public class MainViewModel : INotifyPropertyChanged
 
         TciClient = new TciClient();
         CdrListener = new CommanderSpotsListener();
+        FlexListener = new FlexTcpListener();
         DxvCache = new DXViewCache();
         CtyDb = new CtyDatabase();
         BandModes = new BandModesMap();
@@ -82,6 +84,7 @@ public class MainViewModel : INotifyPropertyChanged
         // Start services
         TciClient.Connect(Config.TciHost, Config.TciPort);
         CdrListener.Start(Config.CdrSpotsIp, Config.CdrSpotsPort);
+        if (Config.FlexEnabled) FlexListener.Start(Config.FlexPort);
     }
 
     private void SetupServiceCallbacks()
@@ -127,6 +130,23 @@ public class MainViewModel : INotifyPropertyChanged
         CdrListener.OnSpotAdd += async spot => await HandleSpotAddAsync(spot);
         CdrListener.OnSpotDelete += async (call, freq) => await HandleSpotDeleteAsync(call, freq);
         CdrListener.OnSpotClearAll += async () => await HandleClearAllAsync();
+
+        FlexListener.OnStatusChanged += s => _dispatcher.Invoke(() =>
+        {
+            FlexStatus = s;
+            FlexStatusColor = s switch
+            {
+                var x when x.StartsWith("Connected") => "Green",
+                var x when x.StartsWith("Listening") => "#FFA500",
+                var x when x.StartsWith("Error") => "Red",
+                _ => "Gray"
+            };
+        });
+
+        FlexListener.OnLogMessage += msg => LogMessage(msg);
+        FlexListener.OnSpotAdd += async spot => await HandleSpotAddAsync(spot);
+        FlexListener.OnSpotDelete += async (call, freq) => await HandleSpotDeleteAsync(call, freq);
+        FlexListener.OnSpotClearAll += async () => await HandleClearAllAsync();
 
         DxvCache.OnStatusChanged += s => _dispatcher.Invoke(() =>
         {
@@ -225,6 +245,20 @@ public class MainViewModel : INotifyPropertyChanged
         {
             LogMessage($"[CMD] Restarting CDR listener on {Config.CdrSpotsIp}:{Config.CdrSpotsPort}");
             CdrListener.Start(Config.CdrSpotsIp, Config.CdrSpotsPort);
+        });
+
+        ApplyRestartFlexCommand = new RelayCommand(() =>
+        {
+            if (Config.FlexEnabled)
+            {
+                LogMessage($"[CMD] Starting Flex listener on port {Config.FlexPort}");
+                FlexListener.Start(Config.FlexPort);
+            }
+            else
+            {
+                LogMessage("[CMD] Flex listener disabled — stopping");
+                FlexListener.Stop();
+            }
         });
     }
 
@@ -359,6 +393,20 @@ public class MainViewModel : INotifyPropertyChanged
         set { _cdrStatusColor = value; OnPropertyChanged(); }
     }
 
+    private string _flexStatus = "Stopped";
+    public string FlexStatus
+    {
+        get => _flexStatus;
+        set { _flexStatus = value; OnPropertyChanged(); }
+    }
+
+    private string _flexStatusColor = "Gray";
+    public string FlexStatusColor
+    {
+        get => _flexStatusColor;
+        set { _flexStatusColor = value; OnPropertyChanged(); }
+    }
+
     private string _dxvStatus = "Not initialized";
     public string DxvStatus
     {
@@ -388,6 +436,7 @@ public class MainViewModel : INotifyPropertyChanged
     public ICommand SendTestSpotCommand { get; private set; } = null!;
     public ICommand SaveConfigCommand { get; private set; } = null!;
     public ICommand ApplyRestartCdrCommand { get; private set; } = null!;
+    public ICommand ApplyRestartFlexCommand { get; private set; } = null!;
 
     // Background colors exposed for UI
     public string BgNormalColor    => _bgColors["bg_normal"];

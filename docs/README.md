@@ -78,7 +78,7 @@ DXLab Suite and Thetis must both be running before Bridge to Thetis is started.
 
 With DXLab Suite and Thetis already running and configured:
 
-1. In **Commander** → Settings → Network Services → Waterfall Bandmap and Thetis Bridge Service — ensure the service is enabled.
+1. In **Commander** → Settings → Network Services → Waterfall Bandmap and Thetis Bridge Service — ensure the service is enabled (port 13063).
 2. In **Thetis** → Setup → TCI — enable the TCI server on port 50001.
 3. Start **Bridge to Thetis** — it connects automatically.
 4. Open a panadapter in Thetis and watch spots appear.
@@ -91,11 +91,11 @@ For full step-by-step instructions see [CONFIGURATION.md](CONFIGURATION.md).
 
 - Zero configuration — all paths found automatically via Windows registry
 - Spot colours match SpotCollector's worked/confirmed/mult colour scheme exactly
+- Correct colour decoding of Commander's UDP spot stream (ConvertColor signed-integer format)
 - LoTW and eQSL background colours from DXView, following your SpotCollector colour settings
 - Country, continent, beam heading and distance in every spot tooltip
 - Mode decoded from SpotCollector BandModes.txt (FT8, CW, RTTY, USB, LSB, DIGU, DIGL…)
 - Band filter — optional: show only spots on the same band as the current VFO
-- CW mode — configurable CWU/CWL selection
 - Reconnect-safe — spots are re-painted automatically if Thetis restarts
 - Debug log window for troubleshooting
 
@@ -103,9 +103,9 @@ For full step-by-step instructions see [CONFIGURATION.md](CONFIGURATION.md).
 
 ## Acknowledgements
 
-- **Dave Bernstein AA6YQ** — DXLab Suite author, for the Waterfall Bandmap UDP protocol documentation and for listing Bridge to Thetis in the DXLab download page
+- **Dave Bernstein AA6YQ** — DXLab Suite author, for the Waterfall Bandmap UDP protocol documentation, ConvertColor colour encoding, and for listing Bridge to Thetis in the DXLab download page
 - **Richie Samphire MW0LGE** — Thetis development
-- **ExpertSDR** — TCI protocol                  
+- **ExpertSDR** — TCI protocol
 - The DXLab Suite community
 
 ---

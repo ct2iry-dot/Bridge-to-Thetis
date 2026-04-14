@@ -1,4 +1,4 @@
-# Bridge to Thetis — Configuration Guide
+# Bridge to Thetis — Configuration Guide (v7.1.0)
 
 This guide walks through every step needed to get Bridge to Thetis running with DXLab Suite and Thetis. Complete each section in order.
 

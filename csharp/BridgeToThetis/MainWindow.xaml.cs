@@ -16,6 +16,10 @@ public partial class MainWindow : Window
         _vm = new MainViewModel(Dispatcher);
         _vm.OnLogMessage += msg => _debugWindow?.AppendLog(msg);
         DataContext = _vm;
+
+        string ver = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "7";
+        Title = $"Bridge to Thetis  v{ver}  CT2IRY  —  DXLab Edition";
+        FooterText.Text = $"Bridge to Thetis v{ver} — CT2IRY — DXLab Edition";
     }
 
     private void MenuConfiguration_Click(object sender, RoutedEventArgs e)

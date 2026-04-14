@@ -11,6 +11,8 @@ public class AppConfig
     public string CdrSpotsIp { get; set; } = "127.0.0.1";
     public int CdrSpotsPort { get; set; } = 13063;
     public bool BandFilter { get; set; } = false;
+    public bool FlexEnabled { get; set; } = false;
+    public int FlexPort { get; set; } = 4992;
 
     private static readonly string ConfigPath = Path.Combine(
         Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),

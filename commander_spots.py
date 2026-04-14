@@ -39,8 +39,9 @@ def _tag(xml: str, name: str) -> str:
 def vb6_color_to_hex(raw: str) -> Optional[str]:
     """
     Convert a VB6 OLE_COLOR integer string to '#RRGGBB'.
-    OLE_COLOR is a signed 32-bit long: low byte = R, mid = G, high = B.
-    Negative values are two's-complement; mask to 24 bits before unpacking.
+    Commander uses two different encodings:
+      Positive (registry PaneColors): VB6 BGR — R=low byte, B=high byte
+      Negative (XML fontcolor):       24-bit two's complement RGB — R=high byte, B=low byte
     Returns None if raw is empty or not parseable.
     """
     raw = raw.strip()
@@ -48,10 +49,15 @@ def vb6_color_to_hex(raw: str) -> Optional[str]:
         return None
     try:
         v = int(raw)
-        v &= 0xFFFFFF        # discard sign bit / palette index byte
-        r = v & 0xFF
-        g = (v >> 8) & 0xFF
-        b = (v >> 16) & 0xFF
+        if v < 0:
+            u = v & 0xFFFFFF   # 24-bit two's complement, RGB byte order
+            r = (u >> 16) & 0xFF
+            g = (u >> 8) & 0xFF
+            b = u & 0xFF
+        else:
+            r = v & 0xFF       # VB6 OLE_COLOR BGR byte order
+            g = (v >> 8) & 0xFF
+            b = (v >> 16) & 0xFF
         return "#{:02X}{:02X}{:02X}".format(r, g, b)
     except (ValueError, TypeError):
         return None

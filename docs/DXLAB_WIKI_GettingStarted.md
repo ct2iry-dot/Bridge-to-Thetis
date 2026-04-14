@@ -10,22 +10,25 @@ Developed by CT2IRY. Listed on the [DXLab download page](https://www.dxlabsuite.
 
 - DXLab Suite with **Commander**, **SpotCollector**, and **DXView** installed and working
 - **Thetis** SDR software with your SDR hardware connected and receiving
-- **Bridge to Thetis** — download from [ct2iry GitHub](https://github.com/ct2iry-dot)
+- **Bridge to Thetis** — download the latest `BridgeToThetis-Setup.msi` from [GitHub Releases](https://github.com/ct2iry/bridge-to-thetis/releases)
 
 ---
 
 ## How it works
 
-SpotCollector receives DX spots and resolves each callsign against your DXKeeper log — determining whether the station is needed, worked, confirmed, or a new multiplier — and assigns a foreground colour accordingly. Bridge to Thetis receives that colour-coded spot stream from Commander and forwards each spot to Thetis via the TCI protocol, where it appears as a labelled, colour-coded marker on the panadapter.
+SpotCollector receives DX spots and resolves each callsign against your DXKeeper log — determining whether the station is needed, worked, confirmed, or a new multiplier — and assigns a foreground colour accordingly. Commander's Waterfall Bandmap and Thetis Bridge Service broadcasts those colour-coded spots over UDP on port 13063.
 
-Additionally, Bridge to Thetis enriches each spot with:
+Bridge to Thetis receives the spot stream from Commander and forwards each spot to Thetis via the TCI protocol, where it appears as a labelled, colour-coded marker on the panadapter.
+
+Each spot is enriched with:
 
 - **Background colour** indicating LoTW / eQSL membership (from DXView)
 - **Country name and continent** (from DXView's BigCTY database)
 - **Beam heading and distance** from your QTH to the DX entity
 - **Spotter callsign and comment** from the original cluster spot
+- **Mode** derived from SpotCollector's BandModes.txt band plan
 
-Clicking a spot on the Thetis panadapter tunes Commander's VFO to that frequency — this is handled by the existing Commander ↔ Thetis connection and requires no additional configuration.
+Clicking a spot on the Thetis panadapter tunes Commander's VFO to that frequency — this is handled by the existing Commander ↔ Thetis connection and requires no additional configuration in Bridge to Thetis.
 
 ---
 
@@ -58,12 +61,15 @@ Commander broadcasts spots to Bridge to Thetis over UDP.
 
 ---
 
-## Step 4 — Configure Bridge to Thetis
+## Step 4 — Install and start Bridge to Thetis
 
-1. Install and launch **Bridge to Thetis**.
-2. The TCI Host should be **127.0.0.1** and TCI Port **50001** (defaults). Change the host only if Thetis runs on a different PC.
-3. Optionally enter your station **latitude and longitude** — this enables beam heading and distance to appear in spot tooltips.
-4. Optionally enable **Band filter** to show only spots on the same band as your current VFO.
+1. Download and run `BridgeToThetis-Setup.msi` from [GitHub Releases](https://github.com/ct2iry/bridge-to-thetis/releases).
+2. Launch **Bridge to Thetis** from the Start menu or desktop shortcut.
+3. The TCI Host should be **127.0.0.1** and TCI Port **50001** (defaults). Change the host only if Thetis runs on a different PC.
+4. Optionally enter your station **latitude and longitude** — this enables beam heading and distance in spot tooltips.
+5. Optionally enable **Band filter** to show only spots on the same band as your current VFO.
+
+No other configuration is required. Bridge to Thetis auto-discovers all DXLab paths from the Windows registry.
 
 ---
 
@@ -101,16 +107,45 @@ Background colours follow your SpotCollector colour settings (PaneColor3/4/8/9) 
 
 ## Port reference
 
-| Port | Purpose |
-|------|---------|
-| 13063 UDP | Commander → Bridge to Thetis (spot stream) |
-| 50001 TCP/WS | Bridge to Thetis → Thetis (TCI spot commands) |
-| 13013 TCP | Commander ↔ Thetis (VFO/CAT — not Bridge) |
+| Port | Protocol | Purpose |
+|------|----------|---------|
+| 13063 | UDP | Commander → Bridge to Thetis (spot stream) |
+| 50001 | TCP/WebSocket | Bridge to Thetis → Thetis (TCI spot commands) |
+| 13013 | TCP | Commander ↔ Thetis (VFO/CAT — not Bridge) |
+
+All ports are on localhost (127.0.0.1) unless Thetis runs on a separate PC.
+
+---
+
+## Troubleshooting
+
+**No spots appear on the panadapter**
+- Check the TCI status in Bridge to Thetis — it must show "Ready"
+- Verify Thetis TCI server is enabled (Setup → TCI → Enable TCI Server)
+- Verify Commander's Waterfall Bandmap and Thetis Bridge Service is enabled on port 13063
+- Check the Bridge debug log for error messages
+
+**Status shows "Connecting" and never changes to "Ready"**
+- Thetis is not running, or TCI is not enabled
+- Check that port 50001 is not blocked by a firewall
+- Verify the TCI Host setting matches the machine running Thetis
+
+**Spots appear but all are the same colour**
+- SpotCollector is not connected to your DXKeeper log
+- DXView database not found — check DXView is installed and has run at least once
+
+**Spots appear but no country/heading in tooltip**
+- BigCTY.csv not found — verify DXView is installed
+- QTH coordinates not set — enter lat/lon in Bridge settings for beam headings
+
+**Clicking spots in Thetis does not tune Commander**
+- This is handled by the Commander ↔ Thetis CAT link (port 13013), not by Bridge to Thetis
+- Verify Commander is connected to Thetis as a radio controller
 
 ---
 
 ## Further information
 
-- Full configuration guide: [CONFIGURATION.md](https://github.com/ct2iry-dot/bridge-to-thetis/blob/main/CONFIGURATION.md)
-- Download and releases: [GitHub Releases](https://github.com/ct2iry-dot/bridge-to-thetis/releases)
-- Issues and support: [GitHub Issues](https://github.com/ct2iry-dot/bridge-to-thetis/issues)
+- Full configuration guide: [CONFIGURATION.md](CONFIGURATION.md)
+- Download and releases: [GitHub Releases](https://github.com/ct2iry/bridge-to-thetis/releases)
+- Issues and support: [GitHub Issues](https://github.com/ct2iry/bridge-to-thetis/issues)

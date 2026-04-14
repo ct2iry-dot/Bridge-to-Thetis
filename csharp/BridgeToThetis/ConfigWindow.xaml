@@ -154,6 +154,50 @@
                 </Grid>
             </TabItem>
 
+            <!-- Flex Tab (hidden until FlexRadio TCP emulation is complete) -->
+            <TabItem Header="Flex" Visibility="Collapsed">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Grid.Row="0" Header="FlexRadio TCP Emulation" Padding="8,4">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Grid.Column="0" Content="Port:" VerticalAlignment="Center"/>
+                            <TextBox Grid.Row="0" Grid.Column="1" x:Name="TxtFlexPort" Margin="2"/>
+                            <CheckBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                      x:Name="ChkFlexEnabled"
+                                      Content="Enable Flex TCP listener (port 4992)"
+                                      Margin="0,6,0,0"
+                                      IsChecked="{Binding Config.FlexEnabled}"/>
+                            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Content="Apply &amp; Restart Flex"
+                                    HorizontalAlignment="Left"
+                                    Click="BtnApplyFlex_Click"
+                                    Margin="0,6,0,0"/>
+                        </Grid>
+                    </GroupBox>
+
+                    <TextBlock Grid.Row="1" Margin="0,10,0,0"
+                               Foreground="#555" FontStyle="Italic" TextWrapping="Wrap"
+                               Text="Status:"/>
+                    <TextBlock Grid.Row="2" Margin="0,2,0,0" FontFamily="Consolas" FontSize="11"
+                               Text="{Binding FlexStatus}"
+                               Foreground="{Binding FlexStatusColor}"/>
+                </Grid>
+            </TabItem>
+
         </TabControl>
 
         <!-- Save button -->

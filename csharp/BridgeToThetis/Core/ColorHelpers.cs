@@ -7,10 +7,22 @@ public static class ColorHelpers
     /// </summary>
     public static string Vb6ToHex(int v)
     {
-        v &= 0xFFFFFF;
-        int r = v & 0xFF;
-        int g = (v >> 8) & 0xFF;
-        int b = (v >> 16) & 0xFF;
+        int r, g, b;
+        if (v < 0)
+        {
+            // Commander XML fontcolor: 24-bit two's complement, RGB byte order (R=high byte)
+            int u = v & 0xFFFFFF;
+            r = (u >> 16) & 0xFF;
+            g = (u >> 8) & 0xFF;
+            b = u & 0xFF;
+        }
+        else
+        {
+            // Registry PaneColors: standard VB6 OLE_COLOR BGR (R=low byte)
+            r = v & 0xFF;
+            g = (v >> 8) & 0xFF;
+            b = (v >> 16) & 0xFF;
+        }
         return $"#{r:X2}{g:X2}{b:X2}";
     }
 

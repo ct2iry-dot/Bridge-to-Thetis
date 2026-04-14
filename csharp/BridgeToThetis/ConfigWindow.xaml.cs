@@ -18,6 +18,7 @@ public partial class ConfigWindow : Window
         TxtTciPort.Text = vm.Config.TciPort.ToString();
         TxtCdrIp.Text = vm.Config.CdrSpotsIp;
         TxtCdrPort.Text = vm.Config.CdrSpotsPort.ToString();
+        TxtFlexPort.Text = vm.Config.FlexPort.ToString();
 
         // BandModes status
         if (vm.BandModes.RangeCount > 0)
@@ -43,6 +44,12 @@ public partial class ConfigWindow : Window
         ApplyNetworkConfig();
         _vm.SaveConfigCommand.Execute(null);
         MessageBox.Show("Configuration saved.", "Bridge to Thetis", MessageBoxButton.OK, MessageBoxImage.Information);
+    }
+
+    private void BtnApplyFlex_Click(object sender, RoutedEventArgs e)
+    {
+        if (int.TryParse(TxtFlexPort.Text.Trim(), out int fp)) _vm.Config.FlexPort = fp;
+        _vm.ApplyRestartFlexCommand.Execute(null);
     }
 
     private void ApplyNetworkConfig()
